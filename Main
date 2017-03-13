@@ -1,0 +1,46 @@
+import numpy
+import random
+
+A1 = [[10,-7,0],[-3,2,6],[5,-1,5]]
+A2 = [[-73,78,24],[92,66,25],[-80,37,10]]
+
+smallest_A1 = 0
+smallest_A2 = 0
+index = 0
+y = [0,0,0]
+realy1 = [0,0,0]
+realy2 = [0,0,0]
+realz1 = 0
+realz2 = 0
+
+for x in range(0, 5):
+    for z in range (0, 3):
+        y[z] = random.randint(0,100)
+    numpy.linalg.norm(y)
+    iA1 = numpy.linalg.inv(A1)
+    iA2 = numpy.linalg.inv(A2)
+    zA1 = iA1.dot(y)
+    zA2 = iA2.dot(y)
+    rA1 = numpy.linalg.norm(zA1)/numpy.linalg.norm(y)
+    rA2 = numpy.linalg.norm(zA2)/numpy.linalg.norm(y)
+    if rA1 > smallest_A1:
+        smallest_A1 = rA1
+        realy1 = y
+        realz1 = zA1
+    if rA2 > smallest_A2:
+        smallest_A2 = rA2
+        realy2 = y
+        realz2 = zA2
+    ++index
+
+est1 = numpy.linalg.norm(realz1)/numpy.linalg.norm(realy1)
+actual1 = numpy.linalg.norm(numpy.linalg.inv(A1))
+
+est2 = numpy.linalg.norm(realz2)/numpy.linalg.norm(realy2)
+actual2 = numpy.linalg.norm(numpy.linalg.inv(A2))
+
+print(est1)
+print(actual1)
+
+print(est2)
+print(actual2)
